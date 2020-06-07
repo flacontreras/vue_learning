@@ -1,77 +1,39 @@
 <template>
   <div id="app">
-    <Header/>
-    <AddTodo v-on:add-todo="addTodo"/>
-    <Todos v-bind:todos="todos"
-           v-on:del-todo="deleteTodo" />
+    <Header />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Todos from './components/Todos';
 import Header from './components/layout/Header';
-import AddTodo from './components/AddTodo';
-import axios from 'axios';
-
 export default {
-  name: 'App',
+  name: "app",
   components: {
-    Todos,
-    Header,
-    AddTodo
-  },
-  data() {
-    return {
-      todos: []
-    }
-  },
-  methods: {
-    deleteTodo(id) {
-      axios.delete(`http://localhost:7001/todos/${id}`)
-      .then(() => this.todos = this.todos.filter(todo => todo.id !== id))
-      .catch(err => console.log(err));
-
-    },
-    addTodo(newTodo) {
-      const { title, completed } = newTodo;
-
-      axios.post('http://localhost:7001/todos', {
-        title,
-        completed
-      }).then(res => this.todos = [...this.todos, res.data])
-      .catch(err => console.log(err));
-    }
-  },
-  created() {
-    axios.get('http://localhost:7001/todos')
-      .then(res => this.todos = res.data)
-      .catch(err => console.log(err));
+    Header
   }
 }
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
+#nav {
+  padding: 30px;
 }
 
-.btn {
-  display: inline-block;
-  border: none;
-  background: #555;
-  color: #fff;
-  padding: 7px 20px;
-  cursor: pointer;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-.btn:hover {
-  background: #666;
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
