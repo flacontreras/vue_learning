@@ -1,16 +1,18 @@
 import axios from 'axios';
 
 const state = {
-    todos: []
+    todos: [],
+    limit: 5
 };
 
 const getters = {
-    allTodos: (state) => state.todos
+    allTodos: (state) => state.todos,
+    limitTodos: (state) => state.limit
 };
 
 const actions = {
-    async fetchTodos({ commit }) {
-        const response = await axios.get('http://localhost:7001/todos');
+    async fetchTodos({ commit, state }) {
+        const response = await axios.get(`http://localhost:7001/todos?_limit=${state.limit}`);
 
         commit('setTodos', response.data);
     },
@@ -23,13 +25,21 @@ const actions = {
         await axios.delete(`http://localhost:7001/todos/${id}`);
 
         commit('removeTodo', id);
+    },
+    async filterTodos({ commit, dispatch }, e) {
+        // Get selected number
+        const limit = parseInt(e.target.options[e.target.options.selectedIndex].innerText);
+
+        commit('limitTodos', limit);
+        dispatch('fetchTodos');
     }
 };
 
 const mutations = {
     setTodos: (state, todos) => (state.todos = todos),
     newTodo: (state, todo) => state.todos.unshift(todo),
-    removeTodo: (state, id) => state.todos = state.todos.filter(todo => todo.id !== id)
+    removeTodo: (state, id) => state.todos = state.todos.filter(todo => todo.id !== id),
+    limitTodos: (state, limit) => state.limit = limit
 };
 
 export default {
