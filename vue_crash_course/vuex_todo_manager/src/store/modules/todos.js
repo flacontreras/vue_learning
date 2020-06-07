@@ -32,14 +32,26 @@ const actions = {
 
         commit('limitTodos', limit);
         dispatch('fetchTodos');
+    },
+    async updateTodo({ commit }, updTodo) {
+        await axios.put(`http://localhost:7001/todos/${updTodo.id}`, updTodo);
+
+        commit('updateTodo', updTodo)
     }
+
 };
 
 const mutations = {
     setTodos: (state, todos) => (state.todos = todos),
     newTodo: (state, todo) => state.todos.unshift(todo),
     removeTodo: (state, id) => state.todos = state.todos.filter(todo => todo.id !== id),
-    limitTodos: (state, limit) => state.limit = limit
+    limitTodos: (state, limit) => state.limit = limit,
+    updateTodo: (state, updTodo) => {
+        const index = state.todos.findIndex(todo => todo.id === updTodo.id);
+        if (index !== -1) {
+            state.todos.splice(index, 1, updTodo);
+        }
+    }
 };
 
 export default {
