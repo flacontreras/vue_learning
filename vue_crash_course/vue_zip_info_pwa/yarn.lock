@@ -863,7 +863,7 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
-"@ionic/core@^4.0.0":
+"@ionic/core@^4.6.0":
   version "4.11.10"
   resolved "https://registry.yarnpkg.com/@ionic/core/-/core-4.11.10.tgz#1aa5f2e31b8d0c741471af9c272964c34155ab5a"
   integrity sha512-PeonKl5E+VOTBeKDr83y0N/1wbfkZ5jV3PSJTsVPE3Q15LxGEO0GzBvVMgkmkssuqOI3WJPXxYWZVL8ejzSFOQ==
@@ -871,12 +871,12 @@
     ionicons "^4.6.3"
     tslib "^1.10.0"
 
-"@ionic/vue@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@ionic/vue/-/vue-0.0.4.tgz#9a4c90eab26cf82746f81f612a32688f6a5f6094"
-  integrity sha512-SlLb9nhFcsUQ2u0cfZJBTEICp6bUghEGY2w/iP0RLnXjkdK5ht5Cu4pJrT4FIzrEpZ5rlf50x244pT3xV+yZJg==
+"@ionic/vue@0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@ionic/vue/-/vue-0.0.9.tgz#d38f0a65f54d5d4d081c52ae45bd9313ec608de6"
+  integrity sha512-FLirjbMtVDL9KgodtKNs7iid8oCabKDnROdgBaQEC5W7MoasaUMjMZfi9bq/UItfoq8yBl8tXW+lEKrv11NJlg==
   dependencies:
-    "@ionic/core" "^4.0.0"
+    "@ionic/core" "^4.6.0"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
